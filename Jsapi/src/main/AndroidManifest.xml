@@ -1,0 +1,18 @@
+<manifest package="com.webview.webviewlib"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application android:allowBackup="true"
+                 android:label="@string/app_name"
+                 android:supportsRtl="true">
+        
+        <activity android:name=".lib.QCActionActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE" />
+                <action android:name="android.intent.action.VIEW"/>
+                <data android:scheme="qunajie" android:host="app.launch"></data>
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

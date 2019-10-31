@@ -1,0 +1,65 @@
+@startuml
+
+interface QCJSAPIInterface{
+    callApp(String doc)
+    appCallback(String callbackId, QCJSDataBean responseBean)
+    resigsterAction(String javaMethod, QCJSAction action)
+}
+
+abstract class QCJSAction{
+     List<QCJSCallBack> callBackList
+     *action(QCJSAPIInterface jsapi, String data, QCJSCallBack qcjsCallBack)
+     abstract void action(QCJSAPIInterface jsapi, String data, QCJSCallBack qcjsCallBack)
+     addAction(QCJSAPIInterface jsapi, String data, QCJSCallBack qcjsCallBack)
+}
+
+class xQCJSAction{
+    action(QCJSAPIInterface jsapi, String data, QCJSCallBack qcjsCallBack)
+}
+
+
+
+class QCX5WebviewJSAPI {
+    Map<String, QCJSAction>  actionMap
+    WeakReference<QCWebView> qcWebViewWeakReference
+    Context getContext()
+    QCWebView getWebView()
+
+    *callApp(String doc)
+    *appCallback(String callbackId, QCJSDataBean responseBean)
+}
+
+class Webview
+
+class QCWebView {
+    loadUrl()
+    initQCJSAPI()
+    setInterceptor(QCJSInterceptor interceptor)
+}
+
+interface QCJSInterceptor {
+    boolean interceptor(String url, String method)
+}
+
+class xQCJSInterceptor {
+    boolean interceptor(String url, String method)
+}
+
+
+Webview <|-- QCWebView
+
+QCJSAPIInterface <|-- QCX5WebviewJSAPI
+
+QCWebView <|.|> QCJSAPIInterface : initQCJSAPI()
+
+QCJSAction <|. QCX5WebviewJSAPI : action()
+
+QCJSAction .|> QCX5WebviewJSAPI : appCallback()
+
+QCJSAction <|-- xQCJSAction
+
+QCX5WebviewJSAPI <|. QCJSInterceptor : interceptor()
+
+QCJSInterceptor <|-- xQCJSInterceptor
+
+@enduml
