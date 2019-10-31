@@ -7,9 +7,9 @@
  5、创建各种交互事件实现类并继承QCJSAction抽象类，在action函数内编写交互功能代码   
  6、在action函数中调用QCJSCallBack.callback(response)将操作结果返回给前端页面   
 ### 二、说明
- 1、在action(QCJSAPIInterface jsApiInfo, T data, QCJSCallBack qcjsCallBack)函数中，jsApiInfo可用于获取Context和WebView对象，data为前端发送事件时的携带参数，qcjsCallBack用于向前端返回响应
- 2、前端发送事件的数据结构使用QCJSDataRequest接收并解析，客户端返回事件用QCJSDataBean发送响应
- 3、QCJSDataBean中需要的code和message尽量使用QCJSError定义的返回信息
+ 1、在action(QCJSAPIInterface jsApiInfo, T data, QCJSCallBack qcjsCallBack)函数中，jsApiInfo可用于获取Context和WebView对象，data为前端发送事件时的携带参数，qcjsCallBack用于向前端返回响应   
+ 2、前端发送事件的数据结构使用QCJSDataRequest接收并解析，客户端返回事件用QCJSDataBean发送响应   
+ 3、QCJSDataBean中需要的code和message尽量使用QCJSError定义的返回信息   
 
 
    
